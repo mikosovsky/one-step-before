@@ -1,4 +1,4 @@
 massive
 pandas
-qlib
+pyqlib
 python-dotenv
