@@ -2,3 +2,7 @@ massive
 pandas
 pyqlib
 python-dotenv
+ruff
+pydantic
+pydantic-settings
+pytest
