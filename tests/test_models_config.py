@@ -1,13 +1,14 @@
 import pytest
-import importlib
 from src.one_step_before.models.config import ExtractConfig
+
 
 def test_api_requires_api_key(monkeypatch):
     monkeypatch.setenv("EXTRACT_DATA_SOURCE", "api")
     monkeypatch.setenv("MASSIVE_API_KEY", "")
-    
+
     with pytest.raises(ValueError):
         ExtractConfig()
+
 
 def test_parquet_does_not_require_api_key(monkeypatch):
     monkeypatch.setenv("EXTRACT_DATA_SOURCE", "parquet")
@@ -15,11 +16,13 @@ def test_parquet_does_not_require_api_key(monkeypatch):
     config = ExtractConfig()
     assert config.data_source == "parquet"
 
+
 def test_csv_does_not_require_api_key(monkeypatch):
     monkeypatch.setenv("EXTRACT_DATA_SOURCE", "csv")
     monkeypatch.setenv("MASSIVE_API_KEY", "")
     config = ExtractConfig()
     assert config.data_source == "csv"
+
 
 def test_api_with_api_key(monkeypatch):
     monkeypatch.setenv("EXTRACT_DATA_SOURCE", "api")
@@ -27,6 +30,7 @@ def test_api_with_api_key(monkeypatch):
     config = ExtractConfig()
     assert config.data_source == "api"
     assert config.api_key == "test_key"
+
 
 def test_invalid_data_source(monkeypatch):
     monkeypatch.setenv("EXTRACT_DATA_SOURCE", "invalid_source")
