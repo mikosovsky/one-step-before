@@ -7,6 +7,7 @@ __pycache__/
 *.so
 img/
 data/
+notebooks/lightning_logs/
 # Distribution / packaging
 .Python
 build/
